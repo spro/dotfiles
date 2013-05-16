@@ -1,0 +1,6 @@
+alias serve="python -m SimpleHTTPServer"
+alias qp="osascript ~/Scripts/quicktime_play.as"
+alias qs="osascript ~/Scripts/quicktime_stop.as"
+alias ip="ifconfig | grep 18"
+alias now="date +%Y%m%d%H%M%S"
+

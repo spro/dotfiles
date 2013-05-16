@@ -1,0 +1,4 @@
+export PATH="$HOME/.bin:$PATH"
+export NODE_PATH="/usr/local/lib/node:/Users/sean/.npm"
+export PYTHONPATH="$HOME/Projects"
+
