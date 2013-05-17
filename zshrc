@@ -12,3 +12,5 @@ source $HOME/.env
 source $HOME/.paths
 source $HOME/.aliases
 
+# Vim bindings
+bindkey -v

@@ -5,3 +5,5 @@ source $HOME/.env
 source $HOME/.paths
 source $HOME/.aliases
 
+# Vim bindings
+set -o vi
