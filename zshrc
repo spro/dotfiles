@@ -12,5 +12,5 @@ source $HOME/.env
 source $HOME/.paths
 source $HOME/.aliases
 
-# Vim bindings
-bindkey -v
+bindkey -v # Use vim bindings
+bindkey '^R' history-incremental-search-backward # But keep <C>-R
