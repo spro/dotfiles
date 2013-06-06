@@ -42,10 +42,5 @@ nnoremap <leader>{ i{%  %}<Esc>3ha
 nnoremap <tab> %
 vnoremap <tab> %
 
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-l> :wincmd l<CR>
-
 set splitbelow
 set splitright
