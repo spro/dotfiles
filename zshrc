@@ -1,7 +1,6 @@
 ZSH=$HOME/.oh-my-zsh
 
-# Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="robbyrussell"
+ZSH_THEME="spro"
 # (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(autojump zsh-syntax-highlighting)
 
