@@ -6,4 +6,4 @@ alias now="date +%Y%m%d%H%M%S"
 alias shell="python -i -c 'from core.data import *'"
 alias bshell="bpython -i -c 'from core.data import *'"
 alias clean="find . -type f -name '*.pyc' -delete; find . -type f -name '*.swp' -delete; find . -type f -name '*~' -delete;"
-
+localtunnel () { ssh -nNT -R 9010:localhost:$@ prontotype.us; }
