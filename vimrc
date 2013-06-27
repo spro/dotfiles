@@ -44,3 +44,4 @@ vnoremap <tab> %
 
 set splitbelow
 set splitright
+command Reindent %s/^\s\+/&&/
