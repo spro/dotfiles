@@ -19,15 +19,8 @@ set bs=2
 set mouse=a
 
 set wildmenu
-
-function! StartUp()
-    if 0 == argc()
-        NERDTree
-    end
-endfunction
-
-autocmd VimEnter * call StartUp()
-let g:NERDTreeDirArrows=0
+set wildignore+=*/tmp/*,*/log/*,*.so,*.swp,*.zip,*/node_modules/*
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|log|solr|public\/js\/vendor|components|builtAssets|node_modules)$'
 
 set ignorecase
 set smartcase
@@ -35,10 +28,15 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
+set laststatus=2
 
 let mapleader=","
+" some special functions i guess
 nnoremap <leader><space> :noh<cr>
 nnoremap <leader>{ i{%  %}<Esc>3ha
+nnoremap <leader>: ^:s/\s*=/:<cr>:noh<cr>
+nnoremap <leader>= ^:s/\s*:/ =<cr>:noh<cr>
+
 nnoremap <tab> %
 vnoremap <tab> %
 
