@@ -1,37 +1,52 @@
-# This is the default .slate file.
-# If no ~/.slate file exists this is the file that will be used.
+# Slate bindings for window moving & resizing
+#
+# dir = vim direction (h/j/k/l)
 
 config defaultToCurrentScreen true
 config nudgePercentOf screenSize
 config resizePercentOf screenSize
 
 # Resize Bindings
-bind h:ctrl;alt     resize -10% +0
-bind j:ctrl;alt    resize +0   +10%
-bind k:ctrl;alt    resize +0   -10%
-bind l:ctrl;alt    resize +10% +0
+#
+# Ctrl + Alt + dir       -> 10% resize
+
+bind h:ctrl;alt             resize -10% +0
+bind j:ctrl;alt             resize +0   +10%
+bind k:ctrl;alt             resize +0   -10%
+bind l:ctrl;alt             resize +10% +0
 
 # Push Bindings
-bind h:cmd;ctrl    push left  bar-resize:screenSizeX/2
-bind j:cmd;ctrl    push down  bar-resize:screenSizeY/2
-bind k:cmd;ctrl    push up    bar-resize:screenSizeY/2
-bind l:cmd;ctrl    push right bar-resize:screenSizeX/2
-bind f:cmd;ctrl    push left bar-resize:screenSizeX
+#
+# Cmd + Ctrl + dir       -> half-screen resize
+# Cmd + Ctrl + f         -> full screen resize
+# Cmd + Ctrl + c         -> centered full height and narrow (good for writing)
+# Cmd + Ctrl + Alt + c   -> centered with padding (good for browsing)
+
+bind h:cmd;ctrl             push left  bar-resize:screenSizeX/2
+bind j:cmd;ctrl             push down  bar-resize:screenSizeY/2
+bind k:cmd;ctrl             push up    bar-resize:screenSizeY/2
+bind l:cmd;ctrl             push right bar-resize:screenSizeX/2
+
+bind f:cmd;ctrl             push left  bar-resize:screenSizeX
+
+bind c:cmd;ctrl             move screenSizeX/3;0 screenSizeX/3;screenSizeY
+bind c:cmd;ctrl;alt         move screenSizeX/8;screenSizeY/8 screenSizeX*3/4;screenSizeY*3/4
 
 # Nudge Bindings
-bind h:cmd;ctrl;alt    nudge -10% +0
-bind j:cmd;ctrl;alt    nudge +0   +10%
-bind k:cmd;ctrl;alt    nudge +0   -10%
-bind l:cmd;ctrl;alt    nudge +10% +0
+#
+# Cmd + Ctrl + Alt + dir -> 10% nudge
 
-# Focus Bindings
-#bind right:cmd;ctrl    focus right
-#bind left:cmd;ctrl     focus left
-bind n:ctrl;alt       focus left
-bind p:ctrl;alt       focus right
-#bind up:cmd;alt   focus behind
-#bind down:cmd;alt focus behind
+bind h:cmd;ctrl;alt         nudge -10% +0
+bind j:cmd;ctrl;alt         nudge +0   +10%
+bind k:cmd;ctrl;alt         nudge +0   -10%
+bind l:cmd;ctrl;alt         nudge +10% +0
 
-# Window Hints
-bind esc:cmd hint
-bind esc:shift;cmd grid
+# Focusing 
+
+bind n:ctrl;alt             focus left
+bind p:ctrl;alt             focus right
+
+# Hints and grid
+
+bind esc:cmd                hint
+bind esc:shift;cmd          grid
