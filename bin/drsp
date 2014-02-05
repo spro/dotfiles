@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo $@ | coffee $HOME/Projects/drsproboto_node/clients/stdin_client.coffee
+
