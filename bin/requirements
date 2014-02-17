@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Requirements: get a list of all require()d modules in a node project
+#
+# Usage: requirements <filename pattern>
+#
+# Example: requirements app.js
+# Example: requirements *.js
+#
+# Filename pattern is by default *.coffee
+
+find . -iname "${1-*.coffee}" |                    # Search in all given file types
+    xargs grep -h "require\((\| \)\('\|\"\)[^.]" | # For lines with `require('something')` or `require 'something'`
+    sed "s/.*require[^']*'\([^']*\)'.*/\1/" |      # Filter matching lines for the required module name
+    sort | uniq                                    # And show only the unique results
