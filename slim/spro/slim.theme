@@ -1,0 +1,32 @@
+# spro's SLiM theme
+
+background_color        #000000
+
+# Input controls
+input_panel_x           50%
+input_panel_y           50%
+input_font              edges:size=10
+input_color             #ffffff
+
+# Position input boxes
+username_x              30
+username_y              26
+
+input_name_x            50
+input_name_y            26
+
+password_x              30
+password_y              70
+
+input_pass_x            50
+input_pass_y            70
+
+# Username / password placeholders ...
+username_color        	#555555
+username_font           edges:size=10
+password_font           edges:size=10
+
+# ... intentionally left blank
+username_msg             
+password_msg             
+
