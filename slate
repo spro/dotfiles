@@ -41,6 +41,13 @@ bind j:cmd;ctrl;alt         nudge +0   +10%
 bind k:cmd;ctrl;alt         nudge +0   -10%
 bind l:cmd;ctrl;alt         nudge +10% +0
 
+# Throw bindings
+#
+# Cmd + Ctrl + Alt + Shift + dir -> Throw to another screen
+
+bind h:cmd;ctrl;alt;shift   throw left
+bind l:cmd;ctrl;alt;shift   throw right
+
 # Focusing 
 
 bind n:ctrl;alt             focus left
