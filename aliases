@@ -1,7 +1,14 @@
 alias serve="python -m SimpleHTTPServer"
 
-alias qp="osascript ~/Scripts/quicktime_play.as"
-alias qs="osascript ~/Scripts/quicktime_stop.as"
+alias dr="coffee ~/Projects/drsproboto/stdin_client.coffee"
+alias qc="coffee ~/Projects/qnectar/pipeline/repl.coffee"
+alias ig="coffee ~/Projects/ignitionx/src/ignitionx.coffee"
+
+alias ga="git add"
+alias gc="git commit -m"
+alias gd="git diff"
+alias gp="git push"
+alias gs="git status"
 
 alias now="date +%Y%m%d%H%M%S"
 alias note="vim ~/Dropbox/Notes/$(date +%Y-%m-%d).txt"
@@ -11,4 +18,4 @@ alias bshell="bpython -i -c 'from core.data import *'"
 
 alias clean="find . -type f -name '*.pyc' -delete; find . -type f -name '*.swp' -delete; find . -type f -name '*~' -delete;"
 
-localtunnel () { ssh -nNT -R 9010:localhost:$@ prontotype.us; }
+localtunnel () { ssh -nNT -R 9010:localhost:$@ prontotype; }
