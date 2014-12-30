@@ -1,6 +1,7 @@
 alias serve="python -m SimpleHTTPServer"
 
 alias dr="coffee ~/Projects/drsproboto/stdin_client.coffee"
+alias hp="coffee ~/Projects/hashpipe/repl.coffee"
 alias qc="coffee ~/Projects/qnectar/pipeline/repl.coffee"
 alias ig="coffee ~/Projects/ignitionx/src/ignitionx.coffee"
 
