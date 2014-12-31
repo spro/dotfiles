@@ -8,12 +8,12 @@ config resizePercentOf screenSize
 
 # Focus bindings
 #
-# Cmd + dir              -> focus in direction
+# Alt + dir              -> focus in direction
 
-bind h:cmd                  focus left
-bind j:cmd                  focus down
-bind k:cmd                  focus up
-bind l:cmd                  focus right
+bind h:alt                  focus left
+bind j:alt                  focus down
+bind k:alt                  focus up
+bind l:alt                  focus right
 
 # Resize Bindings
 #
