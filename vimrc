@@ -10,10 +10,11 @@ filetype indent on
 
 set t_Co=256
 syntax on
-"set background=dark
+colorscheme spro
 
 highlight Search ctermbg=24 ctermfg=15
 highlight CursorLine cterm=NONE ctermbg=235
+highlight Visual cterm=NONE ctermbg=235
 
 set cursorline
 augroup CursorLine
@@ -72,6 +73,10 @@ nnoremap k gk
 " Easy insertion of blank lines
 nnoremap <leader>o o<Esc>
 nnoremap <leader>O O<Esc>
+" `gf` for opening markdown files from wiki links
+nnoremap <leader>f f(lvt)gf
+" ack shortcut
+nnoremap <leader>/ :Ack 
 
 " General configuration
 " ----------------------------------------------------------------------------------------
@@ -103,8 +108,7 @@ set ignorecase
 set smartcase
 
 " Dividers & splits
-set fillchars=vert:\│
-highlight VertSplit ctermbg=White
+highlight VertSplit ctermbg=236
 highlight VertSplit ctermfg=Black
 set splitbelow
 set splitright
