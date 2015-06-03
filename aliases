@@ -2,21 +2,20 @@ alias serve="python -m SimpleHTTPServer"
 
 alias dr="coffee ~/Projects/drsproboto/stdin_client.coffee"
 alias hp="coffee ~/Projects/hashpipe/repl.coffee"
-alias qc="coffee ~/Projects/qnectar/pipeline/repl.coffee"
+alias sr="coffee ~/Projects/somata/src/repl.coffee"
 alias ig="coffee ~/Projects/ignitionx/src/ignitionx.coffee"
 
 alias ga="git add"
 alias gc="git commit -m"
 alias gd="git diff"
 alias gp="git push"
+alias gpl="git pull"
 alias gs="git status"
 
 alias now="date +%Y%m%d%H%M%S"
 alias note="vim ~/Dropbox/Notes/$(date +%Y-%m-%d).txt"
 
-alias shell="python -i -c 'from core.data import *'"
-alias bshell="bpython -i -c 'from core.data import *'"
-
 alias clean="find . -type f -name '*.pyc' -delete; find . -type f -name '*.swp' -delete; find . -type f -name '*~' -delete;"
 
 localtunnel () { ssh -nNT -R 9010:localhost:$@ prontotype; }
+tx () { tmux new -s $( basename $PWD ) }
