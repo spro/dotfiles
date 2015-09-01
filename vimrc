@@ -95,7 +95,7 @@ set mouse=a
 
 set wildmenu
 set wildignore+=*/tmp/*,*/log/*,*.so,*.swp,*.zip,*/node_modules/*
-let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|log|solr|public\/js\/vendor|components|builtAssets|node_modules)$'
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|log|solr|public\/js\/vendor|builtAssets|node_modules)$'
 
 set gdefault
 set laststatus=2
