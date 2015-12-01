@@ -18,4 +18,4 @@ alias note="vim ~/Dropbox/Notes/$(date +%Y-%m-%d).txt"
 alias clean="find . -type f -name '*.pyc' -delete; find . -type f -name '*.swp' -delete; find . -type f -name '*~' -delete;"
 
 localtunnel () { ssh -nNT -R 9010:localhost:$@ prontotype; }
-tx () { tmux new -s $( basename $PWD | sed 's/[^[a-z]/_/') }
+tx () { tmux new -s $( basename $PWD | sed 's/[^[a-z]/_/'); }
