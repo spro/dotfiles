@@ -19,5 +19,5 @@ alias clean="find . -type f \( -name '*.pyc' -o -name '*.swp' -o -name '*~' \) -
 
 localtunnel () { ssh -nNT -R 9010:localhost:$@ prontotype; }
 
-tx () { tmux new -s $( basename $PWD | sed 's/[^[a-z]/_/'); }
+tx () { tmux new -s $( basename $PWD | sed 's/[^[a-z-]/_/g'); }
 ta () { tmux a; }
