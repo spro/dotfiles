@@ -1,6 +1,25 @@
-PROMPT='%{$fg[cyan]%}%n@%m %{$fg[green]%}%U%~%u %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}%{$fg_bold[red]%}# %{$reset_color%}'
+function print_dir() {
+    if [ "$(pwd)" != $HOME ]; then
+        echo ${$(dirname "$(pwd)")/$HOME/\~}/
+    fi
+}
 
-ZSH_THEME_GIT_PROMPT_PREFIX="(%{$fg[red]%}"
+function print_file() {
+    if [ "$(pwd)" != $HOME ]; then
+        basename "$(pwd)"
+    else
+        echo "~"
+    fi
+}
+
+local caret_char=">"
+local caret="%(?:%{$fg_bold[green]%}${caret_char}:%{$fg_bold[red]%}${caret_char})"
+
+PROMPT='%{$FG[245]%}[%t] %{$fg[blue]%}$(print_dir)%U$(print_file)%u $(git_prompt_info)${caret} %{$reset_color%}'
+
+MODE_INDICATOR="%{$fg[green]%}...%{$reset_color%}"
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗ %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+ZSH_THEME_GIT_PROMPT_DIRTY=" %{$FG[yellow]%}* "
+ZSH_THEME_GIT_PROMPT_CLEAN=" "
