@@ -1,5 +1,0 @@
-#!/bin/bash
-
-mkdir -p ~/.vim/{bundle,colors}
-mkdir -p ~/.bin/
-find . -type f | grep -v '/\.' | sed s/\^\.\\/// | xargs -n1 -I % bash -c 'test -d $(dirname ~/.%) && cp % ~/.%'

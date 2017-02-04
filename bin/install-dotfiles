@@ -1,0 +1,16 @@
+#!/bin/bash
+
+mkdir -p ~/.bin/
+mkdir -p ~/.vim/{bundle,colors,autoload}
+
+# Install Pathogen
+curl -LSso ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+cd ~/.vim/bundle
+git clone https://github.com/tpope/vim-surround
+git clone https://github.com/tpope/vim-commentary
+git clone https://github.com/tpope/vim-abolish
+git clone https://github.com/tpope/vim-repeat
+git clone https://github.com/kchmck/vim-coffee-script
+git clone https://github.com/christoomey/vim-tmux-navigator
+
+find . -type f | grep -v '/\.' | sed s/\^\.\\/// | xargs -n1 -I % bash -c 'test -d $(dirname ~/.%) && cp % ~/.%'
