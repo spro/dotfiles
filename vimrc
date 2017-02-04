@@ -1,5 +1,7 @@
 set nocompatible
 set hidden
+set shell=bash
+
 call pathogen#infect()
 
 filetype plugin on
@@ -93,9 +95,12 @@ set bs=2
 
 set mouse=a
 
+set path+=**
 set wildmenu
 set wildignore+=*/tmp/*,*/log/*,*.so,*.swp,*.zip,*/node_modules/*
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|log|solr|public\/js\/vendor|builtAssets|node_modules)$'
+
+let g:closetag_filenames = "*.html,*.coffee"
 
 set gdefault
 set laststatus=2
