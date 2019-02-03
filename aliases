@@ -1,23 +1,44 @@
 alias serve="python -m SimpleHTTPServer"
 
+alias j='fasd_cd -d'     # cd, same functionality as j in autojump
+alias jj='fasd_cd -d -i' # cd with interactive selection
+
 alias dr="coffee ~/Projects/drsproboto/stdin_client.coffee"
 alias hp="coffee ~/Projects/hashpipe/repl.coffee"
 alias sr="coffee ~/Projects/somata/src/repl.coffee"
-alias ig="coffee ~/Projects/ignitionx/src/ignitionx.coffee"
+alias gq="coffee ~/Projects/pronto-data-service/repl.coffee"
 
 alias ga="git add"
 alias gc="git commit -m"
 alias gd="git diff"
 alias gp="git push"
+alias gpr="git pull --rebase && git push"
 alias gpl="git pull"
 alias gs="git status"
+function merge() { git checkout $1 && git merge master && git push && git checkout master; }
 
 alias now="date +%Y%m%d%H%M%S"
 alias note="vim ~/Dropbox/Notes/$(date +%Y-%m-%d).txt"
 
 alias clean="find . -type f \( -name '*.pyc' -o -name '*.swp' -o -name '*~' \) -delete;"
 
-localtunnel () { ssh -nNT -R 9010:localhost:$@ prontotype; }
+localtunnel () { ssh -nNT -R 9010:localhost:$@ prontotype.proxy; }
 
-function tx () { tmux new -s $( basename $PWD | sed 's/[^[a-z0-9-]/-/g'); }
+function tx () {
+    dirname=$( basename $PWD | sed 's/[^[a-z0-9-]/-/g')
+    tmux new -s $dirname || tmux a -t $dirname
+}
 function ta () { tmux a; }
+
+function cpn () {
+    rsync -av --exclude=".git" --exclude="node_modules" ../$1 ./node_modules;
+}
+
+alias create-lambda-function="~/Projects/lambda-sandbox/scripts/create-lambda-function.sh"
+alias update-lambda-function="~/Projects/lambda-sandbox/scripts/update-lambda-function.sh"
+
+function g () {
+    grep -R --include \*.$1 $2 .
+}
+
+alias bounce-push="npm run bounce && ga static && gc bounce && git push"
