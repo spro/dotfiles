@@ -1,0 +1,33 @@
+snippet log "console.log(...)" b
+console.log '[$1]', ${0:$1}
+endsnippet
+
+snippet tryc "try/catch" b
+try
+    $1
+catch ${2:err}
+    $3
+endsnippet
+
+snippet react "react" b
+React = require 'react'
+ReactDOM = require 'react-dom'
+
+class App extends React.Component
+    render: ->
+        <div className='app'>
+            $0
+        </div>
+
+ReactDOM.render <App />, document.getElementById 'app'
+endsnippet
+
+snippet comp "component" b
+class $1 extends React.Component
+    render: ->
+        $0
+endsnippet
+
+snippet --- "separator" b
+# ------------------------------------------------------------------------------
+endsnippet
