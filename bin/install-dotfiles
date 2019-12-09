@@ -2,6 +2,7 @@
 
 mkdir -p ~/.bin/
 mkdir -p ~/.vim/{bundle,colors,autoload}
+mkdir -p ~/.vim/bundle/vim-snippets/{coffee,js,sh}
 
 # Install dotfiles
 find . -type f | grep -v '/\.' | sed s/\^\.\\/// | xargs -n1 -I % bash -c 'test -d $(dirname ~/.%) && cp % ~/.%'
@@ -16,3 +17,6 @@ git clone https://github.com/tpope/vim-repeat
 git clone https://github.com/kchmck/vim-coffee-script
 git clone https://github.com/christoomey/vim-tmux-navigator
 git clone https://github.com/wellle/targets.vim
+git clone https://github.com/tomtom/tlib_vim.git
+git clone https://github.com/MarcWeber/vim-addon-mw-utils.git
+git clone https://github.com/garbas/vim-snipmate.git
