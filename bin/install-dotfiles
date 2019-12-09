@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir -p ~/.bin/
-mkdir -p ~/.vim/{bundle,colors,autoload}
+mkdir -p ~/.vim/{after,bundle,colors,autoload}
 mkdir -p ~/.vim/bundle/vim-snippets/{coffee,js,sh}
 
 # Install dotfiles
