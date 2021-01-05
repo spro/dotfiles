@@ -45,3 +45,5 @@ for m in visual viopp; do
         bindkey -M $m $c select-quoted
     done
 done
+
+eval "$(fasd --init auto)"
