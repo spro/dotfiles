@@ -1,9 +1,48 @@
 alias serve="python -m SimpleHTTPServer"
 
+function mx() {
+    dir=$1
+    mkdir $dir ; cd $dir ; tx
+}
+
 alias j='fasd_cd -d'     # cd, same functionality as j in autojump
 alias jj='fasd_cd -d -i' # cd with interactive selection
 
-alias dr="coffee ~/Projects/drsproboto/stdin_client.coffee"
+alias ltr='ls -ltr'
+
+alias k='kubectl'
+alias kg='kubectl get'
+alias kd='kubectl describe'
+alias kl='kubectl logs'
+
+function kga() {
+    if [ $# -eq 0 ]; then
+        echo "Usage: kg <type> [pattern]"
+    elif [ $# -eq 1 ]; then
+        kubectl get -A $1
+    else
+        kubectl get -A $1 | awk "NR == 1 || /$2/"
+    fi
+}
+
+function ksh() {
+    if [ $# -eq 0 ]; then
+        echo "Usage: ksh <pod> [namespace]"
+    elif [ $# -eq 1 ]; then
+        kubectl exec --stdin --tty $1 -- /bin/sh
+    else
+        kubectl exec --stdin --tty $1 -n $2 -- /bin/sh
+    fi
+}
+
+alias p="pbpaste"
+alias c="tee >(cat) | pbcopy"
+
+alias hr='printf %80s\\n | tr " " "-"'
+
+alias strip="perl -p -e 'chomp if eof'"
+
+# alias dr="coffee ~/Projects/drsproboto/stdin_client.coffee"
 alias hp="coffee ~/Projects/hashpipe/repl.coffee"
 alias sr="coffee ~/Projects/somata/src/repl.coffee"
 alias gq="coffee ~/Projects/pronto-data-service/repl.coffee"
@@ -15,9 +54,12 @@ alias gp="git push"
 alias gpr="git pull --rebase && git push"
 alias gpl="git pull"
 alias gs="git status"
+alias gv="git rev-parse --short HEAD | tr -d '\n'"
+alias gvl="git rev-parse HEAD"
 function merge() { git checkout $1 && git merge master && git push && git checkout master; }
 
-alias now="date +%Y%m%d%H%M%S"
+alias now="date +%Y%m%d-%H%M"
+alias nowfull="date +%Y%m%d-%H%M%S"
 alias note="vim ~/Dropbox/Notes/$(date +%Y-%m-%d).txt"
 
 alias clean="find . -type f \( -name '*.pyc' -o -name '*.swp' -o -name '*~' \) -delete;"
@@ -38,7 +80,70 @@ alias create-lambda-function="~/Projects/lambda-sandbox/scripts/create-lambda-fu
 alias update-lambda-function="~/Projects/lambda-sandbox/scripts/update-lambda-function.sh"
 
 function g () {
-    grep -R --include \*.$1 $2 .
+    grep $1 -R . --include \*.$2 --exclude-dir={node_modules,.next}
 }
 
 alias bounce-push="npm run bounce && ga static && gc bounce && git push"
+
+alias ydl="youtube-dl -x --audio-format mp3"
+
+function torrent () {
+    FULL_FILENAME=$1
+    FILENAME=$(basename $1)
+    scp $FULL_FILENAME cruiser:Torrents/
+    ssh cruiser "cd Torrents && transmission-remote -a '$FILENAME'"
+}
+
+function torrent-ext () {
+    FULL_FILENAME=$1
+    FILENAME=$(basename $1)
+    scp $FULL_FILENAME cruiser-external:Torrents/
+    ssh cruiser-external "cd Torrents && transmission-remote -a '$FILENAME'"
+}
+
+alias tl='ssh cruiser "cd Torrents && transmission-remote -l"'
+alias tl-ext='ssh cruiser-external "cd Torrents && transmission-remote -l"'
+
+alias db=docker-build
+alias dr=docker-run
+alias dp="docker ps"
+
+function kl () {
+    NAME=$1
+    NAMESPACE=${2:-default}
+    kubectl logs -n $NAMESPACE $(kubectl get pods -n $NAMESPACE | grep Running | grep $NAME | cut -d ' ' -f 1) -f
+}
+
+function kr () {
+    NAME=$1
+    NAMESPACE=$2
+    kubectl delete pod -n $NAMESPACE $(kubectl get pods -n $NAMESPACE | grep Running | grep $NAME | cut -d ' ' -f 1)
+}
+
+alias gpgd="pbpaste | gpg --decrypt"
+function gpge () {
+    gpg --encrypt --armor --recipient $1 | tee >(cat) | pbcopy
+}
+
+alias "npm install"="yarn add"
+
+function addL() {
+    echo $1 >> file.txt && ga file.txt && gc $1
+}
+
+function espupload() {
+    SCRIPT=$1
+    nodemcu-tool -p /dev/cu.usbserial-AL00FP1H upload --minify --compile $SCRIPT
+}
+
+function esprun() {
+    SCRIPT=$1
+    COMPILED=${SCRIPT%.lua}.lc
+    nodemcu-tool -p /dev/cu.usbserial-AL00FP1H upload --minify --compile $SCRIPT && nodemcu-tool -p /dev/cu.usbserial-AL00FP1H run $COMPILED
+}
+
+alias espterm="nodemcu-tool -p /dev/cu.usbserial-AL00FP1H terminal"
+alias espreset="nodemcu-tool -p /dev/cu.usbserial-AL00FP1H reset --softreset"
+alias tree="tree -I node_modules"
+
+alias ph='prettier --stdin-filepath index.html'
