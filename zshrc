@@ -15,7 +15,7 @@ source $HOME/.env
 source $HOME/.paths
 source $HOME/.aliases
 
-bindkey -v # Use vim bindings
+# bindkey -v # Use vim bindings
 bindkey '^R' history-incremental-search-backward # But keep <C>-R
 
 # Surround changing keys
@@ -47,3 +47,4 @@ for m in visual viopp; do
 done
 
 eval "$(fasd --init auto)"
+export FZF_DEFAULT_COMMAND='ag -g ""'
