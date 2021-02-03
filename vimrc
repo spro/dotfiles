@@ -9,6 +9,110 @@ filetype indent on
 
 set undodir=~/.vim/undo/
 set undofile
+set backupcopy=yes " Otherwise entr does double-runs on save
+
+let g:ftplugin_sql_omni_key = '<C-j>'
+
+let g:bracey_refresh_on_save = 1
+let g:bracey_auto_start_browser = 0
+let g:bracey_server_port = 3483
+
+set ttimeoutlen=0
+
+let mapleader=","
+
+runtime macros/matchit.vim
+
+" Extra whitespace
+autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
+hi ExtraWhitespace ctermbg=red
+
+" Filetype-specific
+" ----------------------------------------------------------------------------------------
+
+au BufRead,BufNewFile *.sss set filetype=sass
+
+au Filetype typescriptreact set iskeyword+=-
+
+" CoC
+" ----------------------------------------------------------------------------------------
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+nmap <silent> <leader>w <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>W <Plug>(coc-diagnostic-prev)
+
+nmap <silent> <leader>e <Plug>(coc-diagnostic-next-error)
+nmap <silent> <leader>E <Plug>(coc-diagnostic-prev-error)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+    else
+        execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" CoC Snippets
+" ----------------------------------------------------------------------------------------
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Emmet
+
+let g:user_emmet_settings = {
+\    'typescriptreact': {
+\        'extends': 'jsx'
+\    }
+\}
 
 " Appearance
 " ----------------------------------------------------------------------------------------
@@ -25,14 +129,23 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
+" Turn off mac bell
+set noerrorbells 
+set novisualbell
+set t_vb=
+autocmd! GUIEnter * set vb t_vb=
+
 " Functions & Commands
 " ----------------------------------------------------------------------------------------
 
-let mapleader=","
-
+" ,, to save
 nnoremap <leader><leader> :w<CR>
 inoremap <leader><leader> <C-c>:w<CR>a
+" ,q to save and quit
 noremap <leader>q :wq<CR>
+
+" ,t to rename tab
+noremap <leader>t :TabooRename 
 
 " Convert 2-space tabbing to 4-space
 command -range=% Reindent <line1>,<line2>s/^\s\+/&&/
@@ -94,19 +207,20 @@ set cindent
 set cinkeys-=0#
 set indentkeys-=0#
 
-set foldmethod=indent
-set nofoldenable
+set foldmethod=syntax
+" set nofoldenable
+set foldlevelstart=20
 
 set mouse=a
 
 set path+=**
 set wildmenu
-set wildmode=full
+set wildmode=longest:list,full
 
 set wildignore+=*/tmp/*,*/log/*,*/node_modules/*,*.so,*.swp,*.zip,*.bounced,package-lock.json
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|log|solr|public\/js\/vendor|builtAssets|node_modules)$'
 
-let g:closetag_filenames = "*.html,*.coffee"
+let g:closetag_filenames = "*.html,*.coffee,*.js,*.tsx"
 
 set gdefault
 set laststatus=2
@@ -145,7 +259,27 @@ autocmd BufRead package.json set shiftwidth=2
 " let g:UltiSnipsExpandTrigger           = '<tab>'
 " let g:UltiSnipsJumpForwardTrigger      = '<tab>'
 
+" let g:snipMate = {}
+" let g:snipMate.override = 1
+
 let g:closetag_emptyTags_caseSensitive = 1
+
+" fzf 
+
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit'
+      \ }
+nnoremap <c-p> :FZF<cr>
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --type-not svg --type-not lock --type-not config --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+nnoremap \ :Rg<cr>
+
+let g:jedi#completions_command = "<C-;>"
 
 " Vim Instant Preview
 " https://github.com/spro/vim-instant-preview
