@@ -3,6 +3,13 @@ if status is-interactive
     source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
 end
 
+# Fisher plugins
+# --------------
+# jorgebucaran/fisher
+# patrickf1/fzf.fish
+# jorgebucaran/hydro
+# timnew/fasd
+
 set EDITOR vim
 
 set fish_greeting
