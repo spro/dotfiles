@@ -1,6 +1,7 @@
 if status is-interactive
     eval (/opt/homebrew/bin/brew shellenv)
-    source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
+    set -l gcloud_path (brew --prefix)/share/google-cloud-sdk/path.fish.inc
+    test -f $gcloud_path && source $gcloud_path
 end
 
 set EDITOR vim
