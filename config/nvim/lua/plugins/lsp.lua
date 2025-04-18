@@ -5,7 +5,7 @@ return {
         dependencies = {
             -- specifically for editing vim lua scripts
             "folke/lazydev.nvim",
-            ft = "lua",     -- only load on lua files
+            ft = "lua", -- only load on lua files
             opts = {
                 library = {
                     -- See the configuration section for more details
@@ -21,6 +21,8 @@ return {
             lspconfig.ts_ls.setup {}
 
             vim.keymap.set("n", "<space>f", vim.lsp.buf.format)
+
+            vim.keymap.set("n", "ge", vim.diagnostic.open_float)
 
             vim.api.nvim_create_autocmd('LspAttach', {
                 callback = function(args)
