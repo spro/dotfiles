@@ -10,13 +10,6 @@ end
 
 local glucose_menuitem = hs.menubar.new()
 
-local function reverse(tab)
-    for i = 1, #tab // 2, 1 do
-        tab[i], tab[#tab - i + 1] = tab[#tab - i + 1], tab[i]
-    end
-    return tab
-end
-
 function updateGlucose()
     -- Make request
     local status, body = hs.http.get(glucose_url)

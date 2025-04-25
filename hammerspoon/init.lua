@@ -1,8 +1,5 @@
-hs.ax = require 'hs._asm.axuielement'
 require 'helpers'
 require 'resizing'
-require 'chrome'
-require 'layouts'
 require 'glucose'
 
 -- Quick set brightness to 50%

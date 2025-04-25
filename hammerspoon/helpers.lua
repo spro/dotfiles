@@ -13,3 +13,10 @@ function filter(l, fn)
     end
     return filtered
 end
+
+function reverse(l)
+    for i = 1, #l // 2, 1 do
+        l[i], l[#l - i + 1] = l[#l - i + 1], l[i]
+    end
+    return l
+end
