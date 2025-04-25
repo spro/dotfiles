@@ -4,7 +4,7 @@ if status is-interactive
     test -f $gcloud_path && source $gcloud_path
 end
 
-set EDITOR vim
+set -gx EDITOR vim
 
 set fish_greeting # Set to empty
 
