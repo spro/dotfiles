@@ -66,7 +66,7 @@ function updateGlucose()
     glucose_menuitem:setTitle(values[#values])
 end
 
-hs.timer.doEvery(60 * 5, updateGlucose)
+hs.timer.doEvery(60, updateGlucose)
 updateGlucose()
 
 glucose_menuitem:setClickCallback(updateGlucose)
