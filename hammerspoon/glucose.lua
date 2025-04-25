@@ -34,7 +34,7 @@ function updateGlucose()
     values = reverse(values)
 
     -- Set up canvas
-    local a = hs.canvas.new { h = 16, w = 64 }:show()
+    local a = hs.canvas.new { h = 16, w = 64 }
     a[1] = {
         type = "segments",
         closed = false,
