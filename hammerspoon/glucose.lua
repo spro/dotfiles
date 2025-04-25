@@ -11,6 +11,9 @@ end
 local glucose_menuitem = hs.menubar.new()
 
 function updateGlucose()
+    print("Updating glucose...")
+    glucose_menuitem:setTitle("...")
+
     -- Make request
     local status, body = hs.http.get(glucose_url)
     local response = hs.json.decode(body)
@@ -59,7 +62,7 @@ function updateGlucose()
     glucose_menuitem:setTitle(values[#values])
 end
 
-hs.timer.doEvery(60, updateGlucose)
+hs.timer.doEvery(60, function() updateGlucose() end)
 updateGlucose()
 
 glucose_menuitem:setClickCallback(updateGlucose)
