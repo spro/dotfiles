@@ -39,3 +39,5 @@ vim.keymap.set('n', '<C-P>', telescope.find_files)
 
 -- vim.lsp.enable('pyright')
 -- vim.lsp.enable('typescript-language-server')
+
+require('ruff_save')
