@@ -60,9 +60,11 @@ function updateGlucose()
     -- Set icon and value
     glucose_menuitem:setIcon(a:imageFromCanvas())
     glucose_menuitem:setTitle(values[#values])
+
+    print("we did it")
 end
 
-hs.timer.doEvery(60, function() updateGlucose() end)
+updateTimer = hs.timer.doEvery(60, function() updateGlucose() end)
 updateGlucose()
 
 glucose_menuitem:setClickCallback(updateGlucose)
