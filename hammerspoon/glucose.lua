@@ -11,11 +11,14 @@ end
 local glucose_menuitem = hs.menubar.new()
 
 function updateGlucose()
-    print("Updating glucose...")
+    print("[updateGlucose] Loading...")
     glucose_menuitem:setTitle("...")
 
     -- Make request
     local status, body = hs.http.get(glucose_url)
+    if body == nil then return end
+
+    -- Decode latest
     local response = hs.json.decode(body)
     local latest = response["latest"]
 
@@ -61,7 +64,7 @@ function updateGlucose()
     glucose_menuitem:setIcon(a:imageFromCanvas())
     glucose_menuitem:setTitle(values[#values])
 
-    print("we did it")
+    print("[updateGlucose] Done")
 end
 
 updateTimer = hs.timer.doEvery(60, function() updateGlucose() end)
