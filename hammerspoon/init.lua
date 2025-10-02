@@ -1,6 +1,6 @@
 require 'helpers'
 require 'resizing'
-require 'glucose'
+--require 'glucose'
 
 -- Quick set brightness to 50%
 -- Cmd + Alt + Ctrl + W
