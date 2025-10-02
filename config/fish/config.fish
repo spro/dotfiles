@@ -28,6 +28,10 @@ bind -M insert \cN history-token-search-forward
 # Aliases
 # -------
 
+# Copy
+#
+alias cpd='rsync -av --exclude=".git" --exclude="node_modules" --exclude="dist"'
+
 # Ls related
 
 alias l="eza"
@@ -59,6 +63,12 @@ alias gssh="gcloud compute ssh"
 alias gscp="gcloud compute scp"
 
 alias branches='git for-each-ref --sort=-committerdate refs/heads/ --format="%(color:red)%(committerdate:short)%(color:reset) %(refname:short)" --color always'
+
+# Node related
+
+alias pn='pnpm'
+alias pni='pnpm i'
+alias pnd='pnpm run dev'
 
 # Python related
 
@@ -182,3 +192,18 @@ end
 
 # Added by Windsurf
 fish_add_path /Users/sean/.codeium/windsurf/bin
+
+# Generated for envman. Do not edit.
+test -s ~/.config/envman/load.fish; and source ~/.config/envman/load.fish
+~/.local/bin/mise activate fish | source
+
+# >>> coursier install directory >>>
+set -gx PATH "$PATH:/Users/sean/Library/Application Support/Coursier/bin"
+# <<< coursier install directory <<<
+
+# >>> JVM installed by coursier >>>
+set -gx JAVA_HOME "/Users/sean/Library/Caches/Coursier/arc/https/cdn.azul.com/zulu/bin/zulu21.44.17-ca-jdk21.0.8-macosx_aarch64.tar.gz/zulu21.44.17-ca-jdk21.0.8-macosx_aarch64"
+# <<< JVM installed by coursier <<<
+
+# opencode
+fish_add_path /Users/sean/.opencode/bin
