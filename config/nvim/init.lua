@@ -37,7 +37,25 @@ require("config.lazy")
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<C-P>', telescope.find_files)
 
--- vim.lsp.enable('pyright')
--- vim.lsp.enable('typescript-language-server')
+require("conform").setup({
+    default_format_opts = { lsp_format = "fallback" },
+    formatters_by_ft = {
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
+        javascript = { "prettier" },
+        json = { "prettier" },
+    },
+    format_on_save = {
+        -- These options will be passed to conform.format()
+        timeout_ms = 500,
+        lsp_format = "fallback",
+    },
+    log_level = vim.log.levels.DEBUG,
+})
 
-require('ruff_save')
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     pattern = "*",
+--     callback = function(args)
+--         require("conform").format({ bufnr = args.buf })
+--     end
+-- })

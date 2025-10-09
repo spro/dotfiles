@@ -37,6 +37,12 @@ require("lazy").setup({
         -- For Ctrl-P fuzzy file search
         "nvim-telescope/telescope.nvim",
 
+        -- Formatting
+        "stevearc/conform.nvim",
+
+        -- Emmet
+        "mattn/emmet-vim",
+
         -- Color scheme
         {
             "rebelot/kanagawa.nvim",
@@ -54,5 +60,5 @@ require("lazy").setup({
         { import = "plugins" }
     },
     install = { colorscheme = { "default" } },
-    checker = { enabled = true },
+    checker = { enabled = true, frequency = 60 * 60 * 24 * 7 },
 })
