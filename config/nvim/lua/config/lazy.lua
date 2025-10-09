@@ -34,6 +34,9 @@ require("lazy").setup({
         -- Better surround commands like cs, ds, yss, ysiw
         "tpope/vim-surround",
 
+        -- Better repeat (e.g. for vim-surround)
+        "tpope/vim-repeat",
+
         -- For Ctrl-P fuzzy file search
         "nvim-telescope/telescope.nvim",
 

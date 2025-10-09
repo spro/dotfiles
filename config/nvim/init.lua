@@ -52,10 +52,3 @@ require("conform").setup({
     },
     log_level = vim.log.levels.DEBUG,
 })
-
--- vim.api.nvim_create_autocmd("BufWritePre", {
---     pattern = "*",
---     callback = function(args)
---         require("conform").format({ bufnr = args.buf })
---     end
--- })
