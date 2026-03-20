@@ -58,8 +58,6 @@ alias gd="git diff"
 alias gb="git checkout -b"
 alias gp="git push"
 
-alias gtree="fd --type f --hidden --exclude .git | tree --fromfile"
-
 alias gssh="gcloud compute ssh"
 alias gscp="gcloud compute scp"
 
@@ -83,6 +81,11 @@ alias yaegi='rlwrap ~/go/bin/yaegi'
 
 # Functions
 # ---------
+
+# Tree but using fd to ignore .git
+function gtree
+    fd --type f --hidden --exclude .git $argv[1] | tree --fromfile
+end
 
 # Find a ranked list of files with the given string
 function with
@@ -196,3 +199,8 @@ fish_add_path /Users/sean/.codeium/windsurf/bin
 
 # opencode
 fish_add_path /Users/sean/.opencode/bin
+
+
+
+# OpenClaw Completion
+source "/Users/sean/.openclaw/completions/openclaw.fish"
